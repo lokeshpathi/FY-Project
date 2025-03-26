@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import SymptomSelector from "../components/SymptomSelector";
 import { AuthContext } from "../context/Authcontext"; // Import AuthContext
+import "./Home.css";
 
 const specializationsList = [
   "Dermatologist",
@@ -19,13 +20,13 @@ const specializationsList = [
   "Rheumatologist",
   "Vascular Surgeon",
   "ENT Specialist",
-  "Urologist"
+  "Urologist",
 ];
 
 const Home = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext); // Get user from context
-  const [searchType, setSearchType] = useState("specialization"); 
+  const [searchType, setSearchType] = useState("specialization");
   const [specialization, setSpecialization] = useState("");
   const [filteredSpecializations, setFilteredSpecializations] = useState([]);
   const [location, setLocation] = useState("");
@@ -64,13 +65,16 @@ const Home = () => {
 
     try {
       setLoading(true);
-      const response = await axios.post("http://localhost:5001/api/search-specialization", {
-        specialization,
-        location,
-      });
+      const response = await axios.post(
+        "http://localhost:5001/api/search-specialization",
+        {
+          specialization,
+          location,
+        }
+      );
 
-      navigate("/find-doctors", { 
-        state: { doctors: response.data.doctors, specialization } 
+      navigate("/find-doctors", {
+        state: { doctors: response.data.doctors, specialization },
       });
     } catch (error) {
       console.error("Error fetching doctors:", error);
@@ -81,7 +85,15 @@ const Home = () => {
   };
 
   return (
-    <section className="text-center px-6 py-10 flex flex-col items-center">
+    <section
+      className="home text-center px-6 py-10 flex flex-col items-center"
+      style={{
+        backgroundImage: "url('./img2.jpeg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+    >
       <h2 className="text-3xl font-bold text-gray-800">
         Get the Best Doctors at Your Fingertips
       </h2>
@@ -136,8 +148,8 @@ const Home = () => {
             )}
           </div>
 
-          <select 
-            value={location} 
+          <select
+            value={location}
             onChange={(e) => setLocation(e.target.value)}
             className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
           >
@@ -150,7 +162,7 @@ const Home = () => {
             <option value="Nellore">Nellore</option>
             <option value="Hyderabad">Hyderabad</option>
           </select>
-          
+
           <button
             onClick={searchDoctorsBySpecialization}
             className="w-full py-2 px-4 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-600 transition"
@@ -171,9 +183,20 @@ const Home = () => {
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {[
-            "Cancer Care", "ENT", "Dental Care", "Gastrointestinal", "Dermatology",
-            "Infertility & IVF", "Cardiology", "Lung Transplant", "Neurology",
-            "Orthopedics", "Pediatrics", "Psychiatry", "Urology", "More..."
+            "Cancer Care",
+            "ENT",
+            "Dental Care",
+            "Gastrointestinal",
+            "Dermatology",
+            "Infertility & IVF",
+            "Cardiology",
+            "Lung Transplant",
+            "Neurology",
+            "Orthopedics",
+            "Pediatrics",
+            "Psychiatry",
+            "Urology",
+            "More...",
           ].map((specialty) => (
             <div
               key={specialty}
