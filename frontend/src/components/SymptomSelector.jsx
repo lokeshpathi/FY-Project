@@ -108,7 +108,7 @@ const SymptomSelector = () => {
   
 
   return (
-    <div className="w-full max-w-md mx-auto mt-6 p-6 bg-white shadow-md rounded-lg text-center">
+    <div className="w-full ml-12 max-w-md mx-auto mt-6 p-6 bg-white shadow-md rounded-lg text-center">
       <h3 className="text-lg font-semibold mb-4">Select Your Symptoms</h3>
 
       {/* Symptom Dropdown */}
