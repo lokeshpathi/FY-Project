@@ -11,7 +11,7 @@ const Layout = () => {
       <nav className="fixed top-0 left-0 w-full bg-white shadow-md z-50 px-6 py-4 flex justify-between items-center">
         {/* Clickable Logo to Redirect to Home */}
         <Link to="/" className="text-2xl font-bold text-blue-600 hover:opacity-80 transition">
-          LOGO
+          DocAPP
         </Link>
 
         <div className="flex items-center space-x-6">
